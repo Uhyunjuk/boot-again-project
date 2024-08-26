@@ -19,7 +19,7 @@ public class SecondController {
                 "작은 기회로부터 종종 위대한 업적이 시작된다. " + "-데모스테네스-"
         };
 
-        // Math.random()을 사용하여 0부터 배열 길이 - 1까지의 난수 생성
+        // Math.random()을 사용하여 0부터 배열길이 - 1(0~4)까지의 난수 생성
         int randInt = (int) (Math.random() * quotes.length);
         model.addAttribute("randomQuote", quotes[randInt]);
         return "quote";

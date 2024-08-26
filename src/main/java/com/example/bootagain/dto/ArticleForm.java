@@ -24,6 +24,6 @@ public class ArticleForm {
 
     // DTO인 form 객체를 엔티티 객체로 변환하는 역할
     public Article toEntity() {
-        return new Article(null, title, content);
+        return new Article(null, title, content); // 전달받은 Article클래스(엔티티)의 생성자 형태로 적어주면 됨
     }
 }
