@@ -21,7 +21,7 @@ public class MemberController {
     @Autowired
     private MemberRepository memberRepository;
 
-    @GetMapping("/signup")
+    @GetMapping("/members/new")
     public String signup() {
         return "members/new";
     }
@@ -38,7 +38,7 @@ public class MemberController {
         Member saved = memberRepository.save(member); // member 엔티티를 저장해 saved에 반환
         log.info(saved.toString());
 
-        return "";
+        return "redirect:/members/" + saved.getId();
     }
 
     // 특정 회원 조회

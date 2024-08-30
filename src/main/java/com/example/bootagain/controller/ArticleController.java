@@ -40,7 +40,7 @@ public class ArticleController {
         Article saved = articleRepository.save(article); // article 엔티티를 저장해 saved 객체에 반환
         log.info(saved.toString());
 
-        return "";
+        return "redirect:/articles/" + saved.getId(); // 리다이렉트 작성위치
     }
 
     // 단일 데이터 조회하기
@@ -68,8 +68,5 @@ public class ArticleController {
 
         // 3. 뷰 페이지 설정하기
         return "articles/index";
-
     }
-
-
 }

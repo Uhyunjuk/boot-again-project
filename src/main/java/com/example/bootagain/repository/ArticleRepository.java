@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public interface ArticleRepository extends CrudRepository<Article, Long> { // JPA에서 제공하는 인터페이스
 
-    // 오버라이딩
+    // CrudRepository 메서드 오버라이딩
     @Override
-    ArrayList<Article> findAll(); // Iterable -> ArrayList 수정
+    ArrayList<Article> findAll(); // Iterable -> ArrayList로 수정
 
 }
