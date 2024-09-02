@@ -4,12 +4,14 @@ import com.example.bootagain.dto.MemberDto;
 import com.example.bootagain.entity.Member;
 import com.example.bootagain.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.dialect.function.LpadRpadPadEmulation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -83,5 +85,21 @@ public class MemberController {
 
         // 수정결과페이지(상세페이지)로 리다이렉트 해주기
         return "redirect:/members/" + memberEntity.getId();
+    }
+
+    // 회원 삭제하기
+    @GetMapping("/members/{id}/delete")
+    public String delete(@PathVariable Long id, RedirectAttributes rttr) {
+        // 삭제할것가져오기
+        Member target = memberRepository.findById(id).orElse(null);
+
+        // 삭제하고 메세지 띄우기
+        if (target != null) {
+            memberRepository.delete(target);
+            rttr.addFlashAttribute("msg", "회원이 삭제되었습니다.");
+        }
+
+        // 리다이렉트하기
+        return "redirect:/members";
     }
 }
