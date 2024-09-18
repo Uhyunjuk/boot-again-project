@@ -7,8 +7,4 @@ import java.util.ArrayList;
 
 public interface CoffeeRepository extends CrudRepository<Coffee, Long> {
 
-    // CrudRepository 메서드 오버라이딩
-    @Override
-    ArrayList<Coffee> findAll();
-
 }

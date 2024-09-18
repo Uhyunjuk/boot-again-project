@@ -20,20 +20,27 @@ public class CoffeeApiController {
 
     // GET
     @GetMapping("/api/coffees")
-    public List<Coffee> index() {
+    public Iterable<Coffee> index() {
         return coffeeRepository.findAll();
     }
-
     @GetMapping("/api/coffees/{id}")
-    public Coffee Show(@PathVariable Long id) {
-        return coffeeRepository.findById(id).orElse(null);
+    public ResponseEntity<Coffee> Show(@PathVariable Long id) {
+        Coffee coffee = coffeeRepository.findById(id).orElse(null);
+        return (coffee != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(coffee) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
 
     // POST
     @PostMapping("/api/coffees")
-    public Coffee create(@RequestBody CoffeeDto coffeeDto) {
-        Coffee entity = coffeeDto.toEntity();
-        return coffeeRepository.save(entity);
+    public ResponseEntity<Coffee> create(@RequestBody CoffeeDto coffeeDto) {
+        Coffee coffee = coffeeDto.toEntity();
+        if (coffee.getId() != null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
+        Coffee created = coffeeRepository.save(coffee);
+        return ResponseEntity.status(HttpStatus.OK).body(created);
     }
 
     // PATCH
@@ -41,20 +48,20 @@ public class CoffeeApiController {
     public ResponseEntity<Coffee> update(@PathVariable Long id,
                                          @RequestBody CoffeeDto coffeeDto) {
         // 1. dto->entity
-        Coffee coffeeEntity = coffeeDto.toEntity();
-        log.info("id: {}, coffee: {}", id, coffeeEntity.toString());
+        Coffee coffee = coffeeDto.toEntity();
+        log.info("id: {}, coffee: {}", id, coffee.toString());
 
         // 2. target 조회
         Coffee target = coffeeRepository.findById(id).orElse(null);
 
         // 3. 예외처리
-        if (target == null || id != coffeeEntity.getId()) {
-            log.info("잘못된 요청입니다! id: {}, coffee: {}", id, coffeeEntity.toString());
+        if (target == null || id != coffee.getId()) {
+            log.info("잘못된 요청입니다! id: {}, coffee: {}", id, coffee.toString());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
 
         // 4. 업데이트 및 응답해주기
-        target.patch(coffeeEntity); // 새 데이터 + 기존 데이터
+        target.patch(coffee); // 새 데이터 + 기존 데이터
         Coffee updated = coffeeRepository.save(target);
         return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
