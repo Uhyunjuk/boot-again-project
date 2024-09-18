@@ -22,4 +22,13 @@ public class Article {
     @Column
     private String content;
 
+    // 수정할 내용이 있는 경우에만 동작하면 됨
+    public void patch(Article dtoEntity) {
+        if (dtoEntity.title != null) {
+            this.title = dtoEntity.title;
+        }
+        if (dtoEntity.content != null) {
+            this.content = dtoEntity.content;
+        }
+    }
 }
