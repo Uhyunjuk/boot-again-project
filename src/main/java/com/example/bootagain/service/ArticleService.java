@@ -6,8 +6,11 @@ import com.example.bootagain.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -71,4 +74,21 @@ public class ArticleService {
     }
 
 
+    @Transactional // 해당 메서드는 하나의 트랜잭션으로 묶임
+    public List<Article> createArticles(List<ArticleForm> dtos) {
+        // 1. dto 묶음 -> entity 묶음
+        List<Article> articleList = dtos.stream()
+                .map(dto -> dto.toEntity())
+                .collect(Collectors.toList());
+
+        // 2. entity 묶음을 DB에 저장하기
+        articleList.stream()
+                .forEach(article -> articleRepository.save(article));
+
+        // 3. 강제로 에러 발생시키기
+        articleRepository.findById(-1L).orElseThrow(() -> new IllegalArgumentException("결제 실패"));
+
+        // 4. 결과 값 반환하기
+        return articleList;
+    }
 }
