@@ -32,8 +32,7 @@
             nickname: document.querySelector("#new-comment-nickname").value,
             body: document.querySelector("#new-comment-body").value,
             articleId: document.querySelector("#new-comment-article-id").value
-            };
-
+        };
         // 댓글 객체 출력
         console.log(comment);
 
@@ -44,7 +43,7 @@
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(comment) // comment 객체를 JSON 문자열로 변환해 전송
+        body: JSON.stringify(comment)
         }).then(response => {
         // HTTP 응답 코드에 따른 메세지 출력
         const msg = (response.ok) ? "댓글이 등록됐습니다." : "댓글 등록 실패..!";
