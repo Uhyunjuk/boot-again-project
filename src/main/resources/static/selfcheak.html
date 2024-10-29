@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Hello, <span id="target">World</span>!</h1>
+<input type="text" id="text-input">
+<button id="send-btn">전송</button>
+<script>
+// 버튼, input 요소 변수화
+const btnEle = document.querySelector("#send-btn");
+const inputEle = document.querySelector("#text-input");
+
+// 버튼 클릭 이벤트 감지
+btnEle.addEventListener("click", function() {
+    // input 값 추출해서 변수화
+    const msg = inputEle.value;
+    // span 태그에 붙이기
+    target.innerText = msg;
+    // input 값 지우기
+    inputEle.value = "";  // input 요소의 값을 직접 지움
+});
+
+</script>
+</body>
+</html>

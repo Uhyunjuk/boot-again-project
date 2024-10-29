@@ -15,6 +15,5 @@ public class CoffeeDto {
     // dto -> entity
     public Coffee toEntity() {
         return new Coffee(id, name, price);
-
     }
 }
