@@ -5,7 +5,7 @@
 1. 게시판 CRUD를 연습하면서 스프링 부트 기본 기능뿐만 아니라 MVC 패턴의 이해, 머스테치 문법을 통해 기능을 구현할 수 있었다. <br>
 2. 자바스크립트를 사용해 댓글 CRUD 기능을 구현할 수 있었다.
 
-## ⚙️ 개발환경
+## ⚙️ 개발 환경
 <img src="https://img.shields.io/badge/intellij-000000?style=for-the-badge&logo=intellijidea&logoColor=white"> <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"> <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 
 ## 🔧 기술 스택
