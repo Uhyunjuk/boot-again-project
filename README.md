@@ -12,7 +12,7 @@
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
 
 ## :computer: 동작화면
-### 메인화면(게시글 목록 화면)
+### 메인 화면(게시글 목록 화면)
 <img width="630" height="500" alt="메인화면" src="https://github.com/user-attachments/assets/8dad1cde-1fa2-4f63-8aa8-79a18900973f">
 
 ### 새 게시글 작성 화면
